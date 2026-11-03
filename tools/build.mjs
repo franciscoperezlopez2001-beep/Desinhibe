@@ -3,7 +3,7 @@
  * Se abre con doble clic (file://), sin servidor. Uso:  npm install && npm run build
  */
 import { build } from 'esbuild';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -20,12 +20,22 @@ const app = out.outputFiles[0].text;
 
 let html = r('index.html');
 const css = r('css/styles.css');
+// Fotos opcionales: photos/<id>.jpg|png|webp → se incrustan en apex.html como data URI
+const MIME = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp' };
+const photos = {};
+if (existsSync(resolve(root, 'photos'))) {
+  for (const f of readdirSync(resolve(root, 'photos'))) {
+    const m = f.match(/^(.+)\.(jpe?g|png|webp)$/i);
+    if (m) photos[m[1]] = `data:${MIME[m[2].toLowerCase()]};base64,${readFileSync(resolve(root, 'photos', f)).toString('base64')}`;
+  }
+}
+console.log(`Fotos incrustadas: ${Object.keys(photos).length}`);
 const favicon = 'data:image/svg+xml,' + encodeURIComponent(r('assets/favicon.svg'));
 html = html
   .replace(/<!--CSS-->[\s\S]*?<!--\/CSS-->/, `<style>${safe(css)}</style>`)
   .replace('href="assets/favicon.svg"', `href="${favicon}"`)
   .replace(/<!--JS-->[\s\S]*?<!--\/JS-->/,
-    () => ['gsap.min.js', 'ScrollTrigger.min.js', 'lenis.min.js'].map((f) => `<script>${safe(r('js/vendor/' + f))}</script>`).join('\n') +
+    () => `<script>window.APEX_PHOTOS=${JSON.stringify(photos)}</script>\n` + ['gsap.min.js', 'ScrollTrigger.min.js', 'lenis.min.js'].map((f) => `<script>${safe(r('js/vendor/' + f))}</script>`).join('\n') +
       `\n<script type="module">${safe(app)}</script>`);
 
 writeFileSync(resolve(root, 'apex.html'), html);

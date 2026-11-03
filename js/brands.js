@@ -1,6 +1,6 @@
 /** brands.js — secciones Ferrari / Lamborghini / Porsche: tarjetas, ficha técnica, colores, visor 3D. */
 import { BRANDS, BRAND_KEYS, byBrand, byId } from './data.js';
-import { silhouetteSVG } from './profile.js';
+import { silhouetteSVG, artHTML } from './profile.js';
 import { t, L, getLang } from './i18n.js';
 import { fmtNum, fmtUSD, REDUCED } from './util.js';
 
@@ -42,7 +42,7 @@ export function initBrands({ scene, audio, goContact }) {
     const paintArt = () => {
       cards.querySelectorAll('.card').forEach((b) => {
         const m = byId(b.dataset.id);
-        b.querySelector('.card-art').innerHTML = silhouetteSVG(m, m.id === st.model.id ? st.color.hex : brand.colors[0].hex, { detail: false, id: 'c' });
+        b.querySelector('.card-art').innerHTML = artHTML(m, m.id === st.model.id ? st.color.hex : brand.colors[0].hex, { detail: false, id: 'c' });
         b.querySelector('.card-engine').textContent = L(m.engine).split('·')[0].trim();
         b.querySelector('[data-i18n="unit.cv"]').textContent = t('unit.cv');
         const lg = b.querySelector('.card-legacy'); if (lg) lg.textContent = t('brand.legacy');

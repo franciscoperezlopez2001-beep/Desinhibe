@@ -1,0 +1,9 @@
+Pon aquí las fotos reales (formato horizontal, ~1600x1000 px, JPG optimizado < 250 KB).
+El nombre del archivo es el id del modelo:
+
+  Ferrari:      296gtb.jpg  sf90.jpg  12cilindri.jpg  purosangue.jpg
+  Lamborghini:  revuelto.jpg  temerario.jpg  urusse.jpg  huracan.jpg
+  Porsche:      911turbos.jpg  taycangt.jpg  918.jpg
+
+Después ejecuta:  npm run build   → apex.html las incrusta (sigue siendo un único archivo).
+Las que falten se muestran como silueta. Si usas fotos con licencia Creative Commons, anota la atribución en CREDITOS.txt.

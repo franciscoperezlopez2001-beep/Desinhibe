@@ -37,6 +37,10 @@ tools/build.mjs  empaquetado a un solo HTML
   Para cargar `.glb` hay que servir la web por HTTP (`npm run serve`), no con doble clic.
 - **Dominio real:** sustituye `https://apex-showroom.example/` en `index.html`, `sitemap.xml` y `robots.txt`.
 
+## Fotos reales
+
+Pon fotos en `photos/<id>.jpg` (ids en `photos/LEEME.txt`) y ejecuta `npm run build`: se incrustan en `apex.html` y aparecen en tarjetas, comparador y galería. Las que falten siguen como silueta. El coche 3D del visor sigue siendo procedural; para uno real hace falta un `.glb` (ver `js/models.js`). Si las fotos son Creative Commons, respeta su atribución.
+
 ## Recursos externos recomendados (legales)
 
 | Recurso | Dónde | Notas |

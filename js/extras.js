@@ -1,6 +1,6 @@
 /** extras.js — Comparador, galería, formulario de contacto y newsletter. */
 import { BRANDS, MODELS, byId } from './data.js';
-import { silhouetteSVG } from './profile.js';
+import { silhouetteSVG, artHTML } from './profile.js';
 import { t, L, getLang } from './i18n.js';
 import { fmtNum, REDUCED, clamp } from './util.js';
 import { priceText } from './brands.js';
@@ -24,7 +24,7 @@ export function initCompare() {
     const opts = (cur) => MODELS.map((m) => `<option value="${m.id}" ${m.id === cur ? 'selected' : ''}>${BRANDS[m.brand].name} ${m.name}</option>`).join('');
     let h = `<thead><tr><th scope="col"><span class="sr">${t('cmp.model')}</span></th>${ms
       .map((m, i) => `<th scope="col" class="cmp-col" data-brand="${m.brand}">
-        <div class="cmp-art">${silhouetteSVG(m, colorOf(m), { detail: false, id: 'k' + i })}</div>
+        <div class="cmp-art">${artHTML(m, colorOf(m), { detail: false, id: 'k' + i })}</div>
         <label class="sr" for="cmp-s${i}">${t('cmp.model')} ${i + 1}</label>
         <select id="cmp-s${i}" data-i="${i}">${opts(m.id)}</select></th>`)
       .join('')}</tr></thead><tbody>`;
@@ -67,7 +67,7 @@ export function initGallery() {
     return `<article class="slide" data-brand="${m.brand}" aria-roledescription="slide" aria-label="${i + 1} / ${MODELS.length}">
       <div class="slide-bg"></div>
       <div class="slide-ghost" data-depth="-0.35" aria-hidden="true">${m.name.split(' ')[0]}</div>
-      <div class="slide-car" data-depth="0.5">${silhouetteSVG(m, colorOf(m), { id: 'g' + i })}</div>
+      <div class="slide-car" data-depth="0.5">${artHTML(m, colorOf(m), { id: 'g' + i })}</div>
       <div class="slide-cap" data-depth="0.15"><span class="slide-brand">${b.name}</span><h3>${m.name}</h3><p>${L(m.tag)}</p></div>
     </article>`;
   });

@@ -115,3 +115,14 @@ export function silhouetteSVG(model, color = '#888', { detail = true, id = '' } 
     `</svg>`
   );
 }
+
+/** Ruta de la foto de un modelo: photos/<id>.jpg (o la incrustada por tools/build.mjs en apex.html). */
+export const photoSrc = (id) => (window.APEX_PHOTOS && window.APEX_PHOTOS[id]) || `photos/${id}.jpg`;
+
+/** Silueta SVG + foto real encima. Si la foto no existe, se queda la silueta (el <img> se elimina solo). */
+export function artHTML(model, color, opts) {
+  return (
+    silhouetteSVG(model, color, opts) +
+    `<img class="photo" src="${photoSrc(model.id)}" alt="${model.name}" decoding="async" onload="this.parentNode.classList.add('has-photo')" onerror="this.remove()">`
+  );
+}
