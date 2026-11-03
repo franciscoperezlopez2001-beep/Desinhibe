@@ -322,3 +322,9 @@ dialog .btn { --c: #fff; --on: #000; }
 .slide-car.has-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), transparent 35%, rgba(0,0,0,.75)); }
 .slide-ghost { z-index: 1; opacity: .22; } .slide-cap { z-index: 2; }
 .lite .stage-fallback.has-photo { border-radius: 14px; overflow: hidden; }
+
+dialog { max-height: 86vh; overflow: auto; }
+dialog h3 { font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin: 0 0 10px; }
+.credits { font-size: .78rem; color: #b9b9c2; margin-bottom: 22px; display: grid; gap: 6px; }
+.credits a { color: #fff; text-decoration: underline; word-break: break-word; }
+.slide:has(.has-photo) .slide-ghost { display: none; }

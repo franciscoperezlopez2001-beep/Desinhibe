@@ -29,13 +29,16 @@ if (existsSync(resolve(root, 'photos'))) {
     if (m) photos[m[1]] = `data:${MIME[m[2].toLowerCase()]};base64,${readFileSync(resolve(root, 'photos', f)).toString('base64')}`;
   }
 }
+const credFile = resolve(root, 'photos/credits.json');
+const allCredits = existsSync(credFile) ? JSON.parse(readFileSync(credFile, 'utf8')) : {};
+const credits = Object.fromEntries(Object.entries(allCredits).filter(([id]) => photos[id]));
 console.log(`Fotos incrustadas: ${Object.keys(photos).length}`);
 const favicon = 'data:image/svg+xml,' + encodeURIComponent(r('assets/favicon.svg'));
 html = html
   .replace(/<!--CSS-->[\s\S]*?<!--\/CSS-->/, `<style>${safe(css)}</style>`)
   .replace('href="assets/favicon.svg"', `href="${favicon}"`)
   .replace(/<!--JS-->[\s\S]*?<!--\/JS-->/,
-    () => `<script>window.APEX_PHOTOS=${JSON.stringify(photos)}</script>\n` + ['gsap.min.js', 'ScrollTrigger.min.js', 'lenis.min.js'].map((f) => `<script>${safe(r('js/vendor/' + f))}</script>`).join('\n') +
+    () => `<script>window.APEX_PHOTOS=${JSON.stringify(photos)};window.APEX_CREDITS=${JSON.stringify(credits)}</script>\n` + ['gsap.min.js', 'ScrollTrigger.min.js', 'lenis.min.js'].map((f) => `<script>${safe(r('js/vendor/' + f))}</script>`).join('\n') +
       `\n<script type="module">${safe(app)}</script>`);
 
 writeFileSync(resolve(root, 'apex.html'), html);

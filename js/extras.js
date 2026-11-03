@@ -163,6 +163,18 @@ export function initContact() {
   // Aviso legal
   const dlg = document.getElementById('legal');
   document.querySelectorAll('[data-legal]').forEach((b) => b.addEventListener('click', () => dlg.showModal?.()));
+  // Créditos de fotos (obligatorios con CC BY / CC BY-SA). Los inyecta tools/build.mjs desde photos/credits.json
+  const credBox = document.createElement('div');
+  dlg.querySelector('p').after(credBox);
+  const paintCredits = () => {
+    const cr = window.APEX_CREDITS || {};
+    const ids = MODELS.filter((m) => cr[m.id]);
+    credBox.innerHTML = ids.length
+      ? `<h3>${t('legal.photos')}</h3><ul class="credits">${ids.map((m) => { const c = cr[m.id]; return `<li><b>${BRANDS[m.brand].name} ${m.name}</b> — <a href="${c.url}" target="_blank" rel="noopener noreferrer">${c.file}</a>, ${c.author}, ${c.license}</li>`; }).join('')}</ul>`
+      : '';
+  };
+  paintCredits();
+  document.addEventListener('langchange', paintCredits);
   dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
 
