@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agente del tiempo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1B4B;--yellow:#FFD84D;--blue:#3D5AFE;--pink:#FF6B9D;--pale:#C9D1FF}
+*{box-sizing:border-box}
+body{margin:0;background:var(--yellow);color:var(--ink);font-family:'Nunito',sans-serif}
+button,input{font-family:'Fredoka',sans-serif;color:inherit}
+.app{max-width:430px;margin:0 auto;padding:24px 20px 32px;display:flex;flex-direction:column;gap:20px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.city{font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px;margin:0}
+.date{font-weight:700;font-size:14px}
+.badge{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:6px 12px 6px 8px;font-weight:800;font-size:12px}
+.dot{width:10px;height:10px;border-radius:50%;background:#5CFF9D}
+.dot.err{background:var(--pink)}
+.temp{font-family:'Fredoka',sans-serif;font-weight:700;font-size:104px;line-height:.95;letter-spacing:-4px;margin:0}
+.cond{font-family:'Fredoka',sans-serif;font-weight:600;font-size:20px;line-height:1.15;margin-top:6px}
+.hero svg{width:150px;height:auto;flex:none}
+.alert{background:var(--ink);color:#fff;border-radius:28px;padding:20px;display:flex;flex-direction:column;gap:10px;transform:rotate(-1.5deg);box-shadow:6px 6px 0 var(--pink)}
+.alert.calm{background:#fff;color:var(--ink);border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.alert .tag{font-weight:800;font-size:12px;letter-spacing:1.5px;color:var(--yellow)}
+.alert.calm .tag{color:var(--blue)}
+.alert h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:30px;line-height:1.08;margin:0}
+.alert p{margin:0;font-weight:700;font-size:15px}
+.chip{align-self:flex-start;background:var(--yellow);color:var(--ink);border-radius:999px;padding:8px 14px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:15px}
+.card{background:#fff;border:4px solid var(--ink);border-radius:28px;padding:16px;box-shadow:6px 6px 0 var(--ink);display:flex;flex-direction:column;gap:12px}
+.card h3{font-family:'Fredoka',sans-serif;font-weight:700;font-size:20px;margin:0}
+.bars{display:flex;align-items:flex-end;gap:6px;height:124px}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;font-weight:800;font-size:12px}
+.bar i{display:block;width:100%;border-radius:10px 10px 4px 4px;background:var(--pale)}
+.bar.wet i{background:var(--blue)}
+.hours{display:flex;gap:6px;font-weight:800;font-size:12px}
+.hours span{flex:1;text-align:center}
+.bubble{display:flex;gap:12px;align-items:flex-start}
+.avatar{flex:none;width:44px;height:44px;border-radius:50%;background:var(--pink);border:3px solid var(--ink);display:flex;align-items:center;justify-content:center}
+.say{flex:1;background:#fff;border:3px solid var(--ink);border-radius:4px 22px 22px 22px;padding:12px 14px}
+.say b{font-family:'Fredoka',sans-serif;font-size:15px}
+.say p{margin:4px 0 0;font-weight:700;font-size:14px;line-height:1.4}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tile{border:3px solid var(--ink);border-radius:22px;padding:12px 14px}
+.tile small{font-weight:800;font-size:12px;letter-spacing:1px;display:block}
+.tile strong{font-family:'Fredoka',sans-serif;font-size:26px;display:block}
+.tile span{font-weight:700;font-size:13px}
+form{display:flex;gap:8px}
+input{flex:1;min-width:0;height:48px;border:4px solid var(--ink);border-radius:999px;padding:0 16px;font-size:17px;background:#fff}
+.btn{height:48px;border:4px solid var(--ink);border-radius:999px;background:var(--blue);color:#fff;font-weight:600;font-size:17px;padding:0 18px;box-shadow:0 4px 0 var(--ink);cursor:pointer}
+.btn.alt{background:#fff;color:var(--ink)}
+.foot{font-weight:700;font-size:12px;text-align:center}
+:focus-visible{outline:4px solid var(--blue);outline-offset:2px}
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="row">
+    <div>
+      <h1 class="city" id="city">Cargando…</h1>
+      <div class="date" id="date"></div>
+    </div>
+    <div class="badge"><span class="dot" id="dot"></span><span id="status">Conectando</span></div>
+  </div>
+
+  <div class="row hero">
+    <div>
+      <p class="temp" id="temp">--°</p>
+      <div class="cond" id="cond"></div>
+    </div>
+    <svg viewBox="0 0 170 150" role="img" aria-label="Sol con gafas tras una nube sonriente">
+      <circle cx="64" cy="58" r="40" fill="#FF9F1C" stroke="#1D1B4B" stroke-width="4"/>
+      <rect x="38" y="46" width="24" height="16" rx="6" fill="#1D1B4B"/><rect x="66" y="46" width="24" height="16" rx="6" fill="#1D1B4B"/>
+      <path d="M50 76q14 12 28 0" fill="none" stroke="#1D1B4B" stroke-width="4" stroke-linecap="round"/>
+      <path d="M60 128h82a22 22 0 0 0 2-44 28 28 0 0 0-52-8 24 24 0 0 0-32 52z" fill="#fff" stroke="#1D1B4B" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="96" cy="102" r="4" fill="#1D1B4B"/><circle cx="122" cy="102" r="4" fill="#1D1B4B"/>
+      <path d="M100 114q9 8 18 0" fill="none" stroke="#1D1B4B" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <section class="alert calm" id="alert" aria-live="polite">
+    <div class="tag" id="alertTag">AVISO DE LLUVIA</div>
+    <h2 id="alertTitle">Consultando…</h2>
+    <p id="alertSub"></p>
+    <div class="chip" id="alertChip" hidden>Llévate el paraguas</div>
+  </section>
+
+  <section class="card">
+    <h3>Próximas horas</h3>
+    <div class="bars" id="bars"></div>
+    <div class="hours" id="hours"></div>
+  </section>
+
+  <div class="bubble">
+    <div class="avatar" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D1B4B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="4"/><path d="M12 8V4"/><line x1="9" y1="13" x2="9" y2="14"/><line x1="15" y1="13" x2="15" y2="14"/></svg>
+    </div>
+    <div class="say"><b>El resumen del agente</b><p id="summary"></p></div>
+  </div>
+
+  <div class="tiles">
+    <div class="tile" style="background:#FF9F1C"><small>HOY</small><strong id="today">-</strong><span id="todayRain"></span></div>
+    <div class="tile" style="background:#5CFF9D"><small>MAÑANA</small><strong id="tomorrow">-</strong><span id="tomorrowRain"></span></div>
+  </div>
+
+  <form id="form">
+    <label for="q" hidden>Ciudad</label>
+    <input id="q" placeholder="Otra ciudad…" autocomplete="off">
+    <button class="btn" type="submit">Ir</button>
+  </form>
+  <button class="btn alt" id="notify" type="button">Activar avisos del navegador</button>
+  <div class="foot" id="foot"></div>
+</main>
+
+<script>
+const REFRESH_MIN = 10;      // refresco automático
+const WARN_MIN = 60;         // avisar si la lluvia empieza en menos de X minutos
+const THRESHOLD = 50;        // % que cuenta como lluvia
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+let place = store.get('place', { name: 'Zaragoza, España', lat: 41.6561, lon: -0.8773 });
+
+const getJSON = async url => { const r = await fetch(url); if (!r.ok) throw new Error(r.status); return r.json(); };
+const fmtH = t => t.slice(11, 16);
+const fmtDur = m => m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60 ? (m % 60) + ' min' : ''}`.trim();
+const WMO = c => c === 0 ? 'Despejado' : c <= 2 ? 'Poco nuboso' : c === 3 ? 'Nublado' : c <= 48 ? 'Niebla'
+  : c <= 57 ? 'Llovizna' : c <= 67 ? 'Lluvia' : c <= 77 ? 'Nieve' : c <= 82 ? 'Chubascos' : c <= 86 ? 'Nevada' : 'Tormenta';
+
+async function load() {
+  $('status').textContent = 'Actualizando';
+  try {
+    const q = new URLSearchParams({
+      latitude: place.lat, longitude: place.lon, timezone: 'auto', forecast_days: 2,
+      hourly: 'precipitation_probability,precipitation',
+      daily: 'temperature_2m_max,temperature_2m_min,precipitation_sum',
+      current: 'temperature_2m,precipitation,weather_code'
+    });
+    render(await getJSON('https://api.open-meteo.com/v1/forecast?' + q));
+    $('dot').className = 'dot'; $('status').textContent = 'Agente activo';
+  } catch (e) {
+    $('dot').className = 'dot err'; $('status').textContent = 'Sin conexión';
+    $('foot').textContent = 'No se pudo consultar Open-Meteo. Reintentando en ' + REFRESH_MIN + ' min.';
+  }
+}
+
+function render(d) {
+  const now = d.current.time, nowH = now.slice(0, 13);
+  const h = d.hourly;
+  const start = Math.max(0, h.time.findIndex(t => t.slice(0, 13) >= nowH));
+  const end = Math.min(h.time.length, start + 24);
+  const wet = i => (h.precipitation_probability[i] || 0) >= THRESHOLD || (h.precipitation[i] || 0) >= 0.2;
+
+  // franjas de lluvia
+  const slots = []; let cur = null;
+  for (let i = start; i < end; i++) {
+    if (wet(i)) {
+      cur ??= { from: h.time[i], to: h.time[i], p: 0, mm: 0 };
+      cur.to = h.time[i]; cur.p = Math.max(cur.p, h.precipitation_probability[i] || 0); cur.mm += h.precipitation[i] || 0;
+    } else if (cur) { slots.push(cur); cur = null; }
+  }
+  if (cur) slots.push(cur);
+
+  const rainingNow = d.current.precipitation > 0;
+  const next = slots[0];
+  const minsTo = next ? Math.max(0, Math.round((new Date(next.from) - new Date(now)) / 60000)) : null;
+  const endTxt = s => fmtH(new Date(new Date(s.to).getTime() + 3600e3).toISOString().slice(0, 16)); // fin de la última hora (aprox.)
+
+  // cabecera y hero
+  $('city').textContent = place.name;
+  $('date').textContent = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+  $('temp').textContent = Math.round(d.current.temperature_2m) + '°';
+  $('cond').textContent = WMO(d.current.weather_code);
+  document.title = `${Math.round(d.current.temperature_2m)}° ${place.name.split(',')[0]} · Agente del tiempo`;
+
+  // aviso
+  const box = $('alert');
+  if (rainingNow || (next && minsTo <= WARN_MIN)) {
+    box.className = 'alert';
+    $('alertTag').textContent = 'AVISO DE LLUVIA';
+    $('alertTitle').textContent = rainingNow ? 'Está lloviendo ahora' : `Lloverá en ${fmtDur(minsTo)}`;
+    $('alertSub').textContent = next ? `Franja ${fmtH(next.from)}–${endTxt(next)} · prob. máx. ${next.p}% · ~${next.mm.toFixed(1)} mm` : 'Lluvia en curso';
+    $('alertChip').hidden = false;
+  } else if (next) {
+    box.className = 'alert';
+    $('alertTag').textContent = 'PRÓXIMA LLUVIA';
+    $('alertTitle').textContent = `Lloverá a las ${fmtH(next.from)}`;
+    $('alertSub').textContent = `Dentro de ${fmtDur(minsTo)} · prob. máx. ${next.p}% · ~${next.mm.toFixed(1)} mm`;
+    $('alertChip').hidden = false;
+  } else {
+    box.className = 'alert calm';
+    $('alertTag').textContent = 'SIN LLUVIA';
+    $('alertTitle').textContent = 'Cielo tranquilo';
+    $('alertSub').textContent = `No se espera lluvia en las próximas ${end - start} h.`;
+    $('alertChip').hidden = true;
+  }
+
+  // barras: próximas 8 horas
+  const bars = $('bars'), hours = $('hours'); bars.innerHTML = ''; hours.innerHTML = '';
+  for (let i = start; i < Math.min(start + 8, h.time.length); i++) {
+    const p = h.precipitation_probability[i] || 0;
+    const b = document.createElement('div'); b.className = 'bar' + (wet(i) ? ' wet' : '');
+    b.innerHTML = `<span>${p}%</span><i style="height:${Math.max(6, p * 0.9)}px"></i>`;
+    bars.appendChild(b);
+    const s = document.createElement('span'); s.textContent = h.time[i].slice(11, 13) + 'h'; hours.appendChild(s);
+  }
+
+  // tarjetas y resumen
+  const D = d.daily, r = n => Math.round(n);
+  $('today').textContent = `${r(D.temperature_2m_min[0])}° / ${r(D.temperature_2m_max[0])}°`;
+  $('tomorrow').textContent = `${r(D.temperature_2m_min[1])}° / ${r(D.temperature_2m_max[1])}°`;
+  $('todayRain').textContent = D.precipitation_sum[0] > 0 ? `${D.precipitation_sum[0]} mm de lluvia` : 'Sin lluvia';
+  $('tomorrowRain').textContent = D.precipitation_sum[1] > 0 ? `${D.precipitation_sum[1]} mm de lluvia` : 'Sin lluvia';
+  $('summary').textContent = `Ahora ${r(d.current.temperature_2m)}° y ${WMO(d.current.weather_code).toLowerCase()}. ` +
+    (next ? `La lluvia llega a las ${fmtH(next.from)} (hasta ${next.p}% de probabilidad). Lleva paraguas.` : 'Hoy no hace falta paraguas.') +
+    ` Mañana entre ${r(D.temperature_2m_min[1])}° y ${r(D.temperature_2m_max[1])}°.`;
+  $('foot').textContent = `Actualizado a las ${new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })} · se refresca cada ${REFRESH_MIN} min`;
+
+  maybeNotify(rainingNow, next, minsTo);
+}
+
+// Seguimiento: una notificación por franja de lluvia
+function maybeNotify(rainingNow, next, minsTo) {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  if (!rainingNow && !(next && minsTo <= WARN_MIN)) return;
+  const key = rainingNow ? 'now-' + new Date().toISOString().slice(0, 13) : next.from;
+  if (store.get('notified') === key) return;
+  store.set('notified', key);
+  new Notification(rainingNow ? 'Está lloviendo' : `Lloverá en ${fmtDur(minsTo)}`, {
+    body: `${place.name}: ${next ? `prob. ${next.p}% desde las ${fmtH(next.from)}` : 'lluvia en curso'}. ¡Llévate el paraguas!`
+  });
+}
+
+$('notify').onclick = async () => {
+  if (!('Notification' in window)) return alert('Tu navegador no admite notificaciones.');
+  const p = await Notification.requestPermission();
+  $('notify').textContent = p === 'granted' ? 'Avisos activados (mantén esta pestaña abierta)' : 'Avisos bloqueados en el navegador';
+  load();
+};
+if ('Notification' in window && Notification.permission === 'granted') $('notify').textContent = 'Avisos activados (mantén esta pestaña abierta)';
+
+$('form').onsubmit = async e => {
+  e.preventDefault();
+  const name = $('q').value.trim(); if (!name) return;
+  try {
+    const g = await getJSON('https://geocoding-api.open-meteo.com/v1/search?' + new URLSearchParams({ name, count: 1, language: 'es' }));
+    const p = g.results?.[0]; if (!p) { $('foot').textContent = 'No encuentro esa ciudad.'; return; }
+    place = { name: `${p.name}, ${p.country ?? ''}`.replace(/, $/, ''), lat: p.latitude, lon: p.longitude };
+    store.set('place', place); $('q').value = ''; load();
+  } catch { $('foot').textContent = 'No se pudo buscar la ciudad.'; }
+};
+
+load();
+setInterval(load, REFRESH_MIN * 60 * 1000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) load(); });
+</script>
+</body>
+</html>
