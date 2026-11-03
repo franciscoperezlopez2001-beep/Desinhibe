@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>APEX — Ferrari, Lamborghini y Porsche | Showroom de coches de lujo</title>
+  <meta name="description" content="APEX es un showroom digital 3D con los modelos de Ferrari, Lamborghini y Porsche: fichas técnicas, comparador y reserva de visita.">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://apex-showroom.example/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="APEX — Italian &amp; German Icons">
+  <meta property="og:description" content="Ferrari, Lamborghini y Porsche en un showroom 3D interactivo.">
+  <meta property="og:image" content="https://apex-showroom.example/assets/og-image.jpg">
+  <meta property="og:url" content="https://apex-showroom.example/">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"APEX — Italian & German Icons","url":"https://apex-showroom.example/","inLanguage":["es","en"],"description":"Showroom digital 3D de Ferrari, Lamborghini y Porsche."}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Oswald:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap">
+  <!--CSS-->
+  <link rel="stylesheet" href="css/styles.css">
+  <!--/CSS-->
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <div id="loader" role="status" aria-live="polite">
+    <div class="loader-inner">
+      <div class="loader-logo">APEX</div>
+      <div class="loader-bar"><i></i></div>
+      <div class="loader-pct">0%</div>
+    </div>
+  </div>
+  <div class="wipe" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="logo" href="#inicio" aria-label="APEX — Italian &amp; German Icons">APEX<span>Italian &amp; German Icons</span></a>
+    <nav class="nav-desktop" data-i18n-attr="aria-label:nav.main" aria-label="Navegación principal">
+      <a href="#ferrari" data-nav="ferrari">Ferrari</a>
+      <a href="#lamborghini" data-nav="lamborghini">Lamborghini</a>
+      <a href="#porsche" data-nav="porsche">Porsche</a>
+      <a href="#comparador" data-nav="comparador" data-i18n="nav.compare">Comparador</a>
+      <a href="#galeria" data-nav="galeria" data-i18n="nav.gallery">Galería</a>
+      <a href="#contacto" data-nav="contacto" data-i18n="nav.contact">Contacto</a>
+    </nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="icon-btn sound" type="button" aria-pressed="false" data-i18n-attr="aria-label:sound.on" aria-label="Activar sonido">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3z" fill="currentColor"/><g class="waves" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15.5 9a4 4 0 010 6"/><path d="M18 6.5a8 8 0 010 11"/></g><path class="mute" d="M16 9l5 6m0-6l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span data-i18n="nav.menu">Menú</span><i aria-hidden="true"></i></button>
+    </div>
+  </header>
+
+  <div id="menu" class="menu" hidden>
+    <nav data-i18n-attr="aria-label:nav.main" aria-label="Navegación principal">
+      <a href="#inicio" data-i18n="nav.home">Inicio</a>
+      <a href="#ferrari" data-brand-link="ferrari">Ferrari</a>
+      <a href="#lamborghini" data-brand-link="lamborghini">Lamborghini</a>
+      <a href="#porsche" data-brand-link="porsche">Porsche</a>
+      <a href="#comparador" data-i18n="nav.compare">Comparador</a>
+      <a href="#galeria" data-i18n="nav.gallery">Galería</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+    </nav>
+  </div>
+
+  <ol class="dots" data-i18n-attr="aria-label:dots.label" aria-label="Progreso por secciones"></ol>
+
+  <main id="main">
+    <section id="inicio" class="hero" data-brand="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Showroom digital · Edición 2026</p>
+        <h1 id="hero-title" data-i18n="hero.title" data-split>Tres leyendas. Una obsesión.</h1>
+        <p class="hero-sub" data-i18n="hero.sub">Ferrari, Lamborghini y Porsche: la ingeniería, el diseño y la emoción de las máquinas más deseadas del planeta.</p>
+        <p class="gates-label" data-i18n="hero.pick">Elige tu marca</p>
+        <ul class="gates">
+          <li><a class="gate" data-gate="ferrari" href="#ferrari"><span class="gate-n">01</span><strong>Ferrari</strong><em data-i18n="ferrari.gate">Rosso · Maranello</em><span class="gate-arrow" aria-hidden="true">→</span></a></li>
+          <li><a class="gate" data-gate="lamborghini" href="#lamborghini"><span class="gate-n">02</span><strong>Lamborghini</strong><em data-i18n="lamborghini.gate">Giallo · Sant’Agata</em><span class="gate-arrow" aria-hidden="true">→</span></a></li>
+          <li><a class="gate" data-gate="porsche" href="#porsche"><span class="gate-n">03</span><strong>Porsche</strong><em data-i18n="porsche.gate">Blau · Stuttgart</em><span class="gate-arrow" aria-hidden="true">→</span></a></li>
+        </ul>
+        <div class="stage-fallback hero-fallback" aria-hidden="true"></div>
+        <p class="scroll-cue"><i aria-hidden="true"></i><span data-i18n="hero.scroll">Desliza para explorar</span></p>
+      </div>
+    </section>
+
+    <section id="ferrari" class="brand" data-brand="ferrari" aria-labelledby="ferrari-title">
+      <div class="brand-grid">
+        <div class="brand-copy">
+          <p class="eyebrow" data-i18n="ferrari.eyebrow">01 — Maranello, 1947</p>
+          <h2 id="ferrari-title" class="brand-title" data-split>Ferrari</h2>
+          <p class="lede" data-i18n="ferrari.lede">Velocidad con alma de competición.</p>
+          <p class="history" data-i18n="ferrari.history">Enzo Ferrari fundó la marca en Maranello en 1947 para financiar su verdadera pasión: las carreras. Desde entonces ha ganado decenas de títulos en Fórmula 1 y ha convertido al Cavallino Rampante en un símbolo universal. Cada modelo hereda la tecnología y la emoción de la pista.</p>
+
+          <div class="spec glass" aria-live="polite">
+            <div class="spec-head">
+              <div>
+                <h3 class="spec-name"></h3>
+                <p class="spec-tag"></p>
+              </div>
+              <span class="badge-legacy" hidden data-i18n="brand.legacy">Legado</span>
+            </div>
+            <p class="spec-engine"></p>
+            <dl class="stats">
+              <div class="stat"><dt data-i18n="brand.power">Potencia</dt><dd><span class="num" data-stat="power">0</span><small data-i18n="unit.cv">CV</small></dd></div>
+              <div class="stat"><dt data-i18n="brand.accel">0-100 km/h</dt><dd><span class="num" data-stat="zero100">0</span><small data-i18n="unit.s">s</small></dd></div>
+              <div class="stat"><dt data-i18n="brand.top">V. máxima</dt><dd><span class="num" data-stat="top">0</span><small data-i18n="unit.kmh">km/h</small></dd></div>
+            </dl>
+            <p class="spec-price"></p>
+
+            <div class="colors" role="radiogroup" data-i18n-attr="aria-label:brand.color" aria-label="Color de carrocería"></div>
+            <p class="color-name" aria-live="polite"></p>
+
+            <button class="btn btn-request" type="button"><span data-i18n="brand.request">Solicitar información</span><i aria-hidden="true">→</i></button>
+            <p class="disclaimer" data-i18n="brand.disclaimer">Datos orientativos. Verifica siempre las cifras con la web oficial de la marca.</p>
+          </div>
+        </div>
+
+        <div class="stage-hit" tabindex="0" role="group" data-i18n-attr="aria-label:brand.drag" aria-label="Visor 3D: arrastra o usa las flechas del teclado para girar el coche">
+          <div class="stage-fallback" aria-hidden="true"></div>
+          <p class="stage-hint"><i aria-hidden="true"></i><span data-i18n="brand.hint">Arrastra para girar</span></p>
+        </div>
+      </div>
+
+      <div class="models">
+        <div class="models-head">
+          <h3 data-i18n="brand.models">Modelos</h3>
+          <div class="car-nav">
+            <button class="icon-btn" type="button" data-dir="-1" data-i18n-attr="aria-label:brand.prev" aria-label="Anterior">←</button>
+            <button class="icon-btn" type="button" data-dir="1" data-i18n-attr="aria-label:brand.next" aria-label="Siguiente">→</button>
+          </div>
+        </div>
+        <ul class="cards" data-i18n-attr="aria-label:brand.carousel" aria-label="Carrusel de modelos"></ul>
+      </div>
+    </section>
+
+    <section id="lamborghini" class="brand" data-brand="lamborghini" aria-labelledby="lamborghini-title">
+      <div class="brand-grid">
+        <div class="brand-copy">
+          <p class="eyebrow" data-i18n="lamborghini.eyebrow">02 — Sant’Agata Bolognese, 1963</p>
+          <h2 id="lamborghini-title" class="brand-title" data-split>Lamborghini</h2>
+          <p class="lede" data-i18n="lamborghini.lede">Diseño que desafía las reglas.</p>
+          <p class="history" data-i18n="lamborghini.history">Ferruccio Lamborghini fundó la marca en 1963 decidido a rivalizar con Ferrari. El Miura (1966) inventó el superdeportivo de motor central y el Countach grabó su silueta en una generación. Hoy, con el Revuelto, abre su era híbrida sin perder su carácter salvaje.</p>
+
+          <div class="spec glass" aria-live="polite">
+            <div class="spec-head">
+              <div>
+                <h3 class="spec-name"></h3>
+                <p class="spec-tag"></p>
+              </div>
+              <span class="badge-legacy" hidden data-i18n="brand.legacy">Legado</span>
+            </div>
+            <p class="spec-engine"></p>
+            <dl class="stats">
+              <div class="stat"><dt data-i18n="brand.power">Potencia</dt><dd><span class="num" data-stat="power">0</span><small data-i18n="unit.cv">CV</small></dd></div>
+              <div class="stat"><dt data-i18n="brand.accel">0-100 km/h</dt><dd><span class="num" data-stat="zero100">0</span><small data-i18n="unit.s">s</small></dd></div>
+              <div class="stat"><dt data-i18n="brand.top">V. máxima</dt><dd><span class="num" data-stat="top">0</span><small data-i18n="unit.kmh">km/h</small></dd></div>
+            </dl>
+            <p class="spec-price"></p>
+
+            <div class="colors" role="radiogroup" data-i18n-attr="aria-label:brand.color" aria-label="Color de carrocería"></div>
+            <p class="color-name" aria-live="polite"></p>
+
+            <button class="btn btn-request" type="button"><span data-i18n="brand.request">Solicitar información</span><i aria-hidden="true">→</i></button>
+            <p class="disclaimer" data-i18n="brand.disclaimer">Datos orientativos. Verifica siempre las cifras con la web oficial de la marca.</p>
+          </div>
+        </div>
+
+        <div class="stage-hit" tabindex="0" role="group" data-i18n-attr="aria-label:brand.drag" aria-label="Visor 3D: arrastra o usa las flechas del teclado para girar el coche">
+          <div class="stage-fallback" aria-hidden="true"></div>
+          <p class="stage-hint"><i aria-hidden="true"></i><span data-i18n="brand.hint">Arrastra para girar</span></p>
+        </div>
+      </div>
+
+      <div class="models">
+        <div class="models-head">
+          <h3 data-i18n="brand.models">Modelos</h3>
+          <div class="car-nav">
+            <button class="icon-btn" type="button" data-dir="-1" data-i18n-attr="aria-label:brand.prev" aria-label="Anterior">←</button>
+            <button class="icon-btn" type="button" data-dir="1" data-i18n-attr="aria-label:brand.next" aria-label="Siguiente">→</button>
+          </div>
+        </div>
+        <ul class="cards" data-i18n-attr="aria-label:brand.carousel" aria-label="Carrusel de modelos"></ul>
+      </div>
+    </section>
+
+    <section id="porsche" class="brand" data-brand="porsche" aria-labelledby="porsche-title">
+      <div class="brand-grid">
+        <div class="brand-copy">
+          <p class="eyebrow" data-i18n="porsche.eyebrow">03 — Stuttgart-Zuffenhausen, 1948</p>
+          <h2 id="porsche-title" class="brand-title" data-split>Porsche</h2>
+          <p class="lede" data-i18n="porsche.lede">Ingeniería que se conduce cada día.</p>
+          <p class="history" data-i18n="porsche.history">Ferry Porsche presentó en 1948 el 356, el primer deportivo con su apellido. En 1963 llegó el 911, un icono que lleva seis décadas evolucionando sin perder su identidad. Precisión alemana, uso diario y un palmarés que incluye Le Mans.</p>
+
+          <div class="spec glass" aria-live="polite">
+            <div class="spec-head">
+              <div>
+                <h3 class="spec-name"></h3>
+                <p class="spec-tag"></p>
+              </div>
+              <span class="badge-legacy" hidden data-i18n="brand.legacy">Legado</span>
+            </div>
+            <p class="spec-engine"></p>
+            <dl class="stats">
+              <div class="stat"><dt data-i18n="brand.power">Potencia</dt><dd><span class="num" data-stat="power">0</span><small data-i18n="unit.cv">CV</small></dd></div>
+              <div class="stat"><dt data-i18n="brand.accel">0-100 km/h</dt><dd><span class="num" data-stat="zero100">0</span><small data-i18n="unit.s">s</small></dd></div>
+              <div class="stat"><dt data-i18n="brand.top">V. máxima</dt><dd><span class="num" data-stat="top">0</span><small data-i18n="unit.kmh">km/h</small></dd></div>
+            </dl>
+            <p class="spec-price"></p>
+
+            <div class="colors" role="radiogroup" data-i18n-attr="aria-label:brand.color" aria-label="Color de carrocería"></div>
+            <p class="color-name" aria-live="polite"></p>
+
+            <button class="btn btn-request" type="button"><span data-i18n="brand.request">Solicitar información</span><i aria-hidden="true">→</i></button>
+            <p class="disclaimer" data-i18n="brand.disclaimer">Datos orientativos. Verifica siempre las cifras con la web oficial de la marca.</p>
+          </div>
+        </div>
+
+        <div class="stage-hit" tabindex="0" role="group" data-i18n-attr="aria-label:brand.drag" aria-label="Visor 3D: arrastra o usa las flechas del teclado para girar el coche">
+          <div class="stage-fallback" aria-hidden="true"></div>
+          <p class="stage-hint"><i aria-hidden="true"></i><span data-i18n="brand.hint">Arrastra para girar</span></p>
+        </div>
+      </div>
+
+      <div class="models">
+        <div class="models-head">
+          <h3 data-i18n="brand.models">Modelos</h3>
+          <div class="car-nav">
+            <button class="icon-btn" type="button" data-dir="-1" data-i18n-attr="aria-label:brand.prev" aria-label="Anterior">←</button>
+            <button class="icon-btn" type="button" data-dir="1" data-i18n-attr="aria-label:brand.next" aria-label="Siguiente">→</button>
+          </div>
+        </div>
+        <ul class="cards" data-i18n-attr="aria-label:brand.carousel" aria-label="Carrusel de modelos"></ul>
+      </div>
+    </section>
+
+    <section id="comparador" class="compare" aria-labelledby="cmp-title">
+      <div class="wrap">
+        <p class="eyebrow" data-i18n="cmp.eyebrow">04 — Cara a cara</p>
+        <h2 id="cmp-title" class="section-title" data-i18n="cmp.title" data-split>Comparador</h2>
+        <p class="section-sub" data-i18n="cmp.sub">Pon hasta tres modelos frente a frente. En verde, el mejor valor de cada fila.</p>
+        <div class="cmp-wrap" role="region" data-i18n-attr="aria-label:cmp.title" aria-label="Comparador" tabindex="0">
+          <table class="cmp-table"></table>
+        </div>
+        <p class="disclaimer" data-i18n="brand.disclaimer">Datos orientativos. Verifica siempre las cifras con la web oficial de la marca.</p>
+      </div>
+    </section>
+
+    <section id="galeria" class="gallery" aria-labelledby="gal-title">
+      <div class="wrap gal-head">
+        <div>
+          <p class="eyebrow" data-i18n="gal.eyebrow">05 — Galería</p>
+          <h2 id="gal-title" class="section-title" data-i18n="gal.title" data-split>Siluetas de leyenda</h2>
+        </div>
+        <div class="gal-ctrl">
+          <span class="gal-count" aria-live="polite"></span>
+          <button class="icon-btn" type="button" data-gdir="-1" data-i18n-attr="aria-label:gal.prev" aria-label="Slide anterior">←</button>
+          <button class="icon-btn" type="button" data-gdir="1" data-i18n-attr="aria-label:gal.next" aria-label="Slide siguiente">→</button>
+        </div>
+      </div>
+      <div class="gal-viewport" tabindex="0" role="region" aria-roledescription="carousel" data-i18n-attr="aria-label:gal.label" aria-label="Galería de modelos">
+        <div class="gal-track"></div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact" aria-labelledby="con-title">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="eyebrow" data-i18n="con.eyebrow">06 — Contacto</p>
+          <h2 id="con-title" class="section-title" data-i18n="con.title" data-split>Reserva tu visita</h2>
+          <p class="section-sub" data-i18n="con.sub">Cuéntanos qué modelo te interesa y un asesor se pondrá en contacto contigo.</p>
+        </div>
+        <form id="contact-form" class="form glass" novalidate>
+          <div class="field"><label for="f-name" data-i18n="f.name">Nombre completo</label><input id="f-name" name="name" type="text" autocomplete="name" required><p class="err" role="alert"></p></div>
+          <div class="field"><label for="f-email" data-i18n="f.email">Correo electrónico</label><input id="f-email" name="email" type="email" autocomplete="email" required><p class="err" role="alert"></p></div>
+          <div class="field"><label for="f-phone" data-i18n="f.phone">Teléfono (opcional)</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"><p class="err" role="alert"></p></div>
+          <div class="field"><label for="f-model" data-i18n="f.model">Modelo de interés</label><select id="f-model" name="model" required></select><p class="err" role="alert"></p></div>
+          <div class="field"><label for="f-date" data-i18n="f.date">Fecha preferida</label><input id="f-date" name="date" type="date" required><p class="err" role="alert"></p></div>
+          <div class="field full"><label for="f-msg" data-i18n="f.msg">Mensaje</label><textarea id="f-msg" name="msg" rows="4"></textarea></div>
+          <div class="field full check"><label><input id="f-consent" name="consent" type="checkbox" required><span data-i18n="f.consent">Acepto la política de privacidad y el tratamiento de mis datos.</span></label><p class="err" role="alert"></p></div>
+          <button class="btn btn-send" type="submit"><span class="lbl" data-i18n="f.send">Enviar solicitud</span><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="form-ok" role="status"></p>
+          <p class="disclaimer full" data-i18n="f.demo">Demostración: el formulario no envía datos a ningún servidor.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="#inicio">APEX<span>Italian &amp; German Icons</span></a>
+        <p class="copy" data-i18n="ft.copy">© 2026 APEX Showroom. Proyecto de demostración.</p>
+      </div>
+      <form class="news" id="news-form" novalidate>
+        <label for="news-email" data-i18n="ft.news">Newsletter</label>
+        <p class="news-sub" data-i18n="ft.newsSub">Estrenos, ediciones limitadas y eventos privados. Sin spam.</p>
+        <div class="news-row">
+          <input id="news-email" type="email" autocomplete="email" data-i18n-attr="placeholder:ft.email" placeholder="tu@correo.com" required>
+          <button class="btn" type="submit" data-i18n="ft.subscribe">Suscribirme</button>
+        </div>
+        <p class="news-msg" role="status"></p>
+      </form>
+      <nav class="legal-links" aria-label="Legal">
+        <button type="button" data-legal data-i18n="ft.legal">Aviso legal</button>
+        <button type="button" data-legal data-i18n="ft.privacy">Privacidad</button>
+        <button type="button" data-legal data-i18n="ft.cookies">Cookies</button>
+      </nav>
+      <ul class="social" data-i18n-attr="aria-label:ft.social" aria-label="Redes sociales">
+        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a></li>
+        <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a></li>
+        <li><a href="https://www.x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">X</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">IN</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <dialog id="legal" aria-labelledby="legal-title">
+    <h2 id="legal-title" data-i18n="legal.title">Aviso legal</h2>
+    <p data-i18n="legal.body"></p>
+    <button class="btn" type="button" data-close data-i18n="legal.close">Cerrar</button>
+  </dialog>
+
+  <!--JS-->
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/lenis.min.js"></script>
+  <script type="importmap">{"imports":{"three":"./js/vendor/three.module.min.js"}}</script>
+  <script type="module" src="js/main.js"></script>
+  <!--/JS-->
+</body>
+</html>

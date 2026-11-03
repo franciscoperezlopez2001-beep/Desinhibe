@@ -1,0 +1,11 @@
+{
+  "name": "apex-showroom",
+  "version": "1.0.0",
+  "private": true,
+  "description": "APEX — showroom 3D de Ferrari, Lamborghini y Porsche",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "serve": "npx --yes http-server -p 8080 -c-1 ."
+  },
+  "devDependencies": { "esbuild": "^0.24.0" }
+}
