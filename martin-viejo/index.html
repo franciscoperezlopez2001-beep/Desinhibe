@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO local -->
+  <title>Martín Viejo · Restaurante en Huesca · Cocina de producto y comidas de negocios</title>
+  <meta name="description" content="Martín Viejo, restaurante en Huesca. Cocina de producto, menú de alto nivel y un servicio atento y discreto para comidas de negocios. Solicite su reserva.">
+  <link rel="canonical" href="https://[DOMINIO]/">
+  <meta name="theme-color" content="#14110e">
+
+  <!-- Preparado para inglés: descomentar cuando exista /en/
+  <link rel="alternate" hreflang="es" href="https://[DOMINIO]/">
+  <link rel="alternate" hreflang="en" href="https://[DOMINIO]/en/">
+  <link rel="alternate" hreflang="x-default" href="https://[DOMINIO]/">
+  -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Martín Viejo">
+  <meta property="og:title" content="Martín Viejo · Restaurante en Huesca">
+  <meta property="og:description" content="Cocina de producto. Mesa tranquila. Total discreción.">
+  <meta property="og:url" content="https://[DOMINIO]/">
+  <!-- FOTO OG: 1200×630 px, misma imagen que el hero (mesa puesta, luz cálida). -->
+  <meta property="og:image" content="https://[DOMINIO]/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314110e'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='30' fill='%23c09366' text-anchor='middle'%3EMV%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- schema.org · Restaurant. Sustituir marcadores antes de publicar. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Martín Viejo",
+    "url": "https://[DOMINIO]/",
+    "image": "https://[DOMINIO]/assets/img/og.jpg",
+    "telephone": "+34974227492",
+    "email": "[EMAIL]",
+    "servesCuisine": ["Cocina de producto", "Cocina española"],
+    "priceRange": "[RANGO_PRECIO]",
+    "acceptsReservations": "True",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle los Pirineos, 15",
+      "postalCode": "22004",
+      "addressLocality": "Huesca",
+      "addressRegion": "Aragón",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": "[LATITUD]", "longitude": "[LONGITUD]" },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "[HH:MM]", "closes": "[HH:MM]" }
+    ],
+    "sameAs": ["https://www.instagram.com/[USUARIO]/"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <!-- ============ CABECERA ============ -->
+  <header class="header" id="top">
+    <div class="header__inner">
+      <a class="brand" href="#top" aria-label="Martín Viejo, inicio">Martín Viejo</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+        <span class="nav-toggle__label">Menú</span>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Principal">
+        <ul>
+          <li><a href="#casa">La casa</a></li>
+          <li><a href="#menu">El menú</a></li>
+          <li><a href="#discrecion">Discreción</a></li>
+          <li><a href="#empresa">Empresa</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a class="nav__cta" href="#reservas">Reservar</a></li>
+        </ul>
+        <!-- Selector de idioma, preparado para /en/:
+        <a class="lang" href="/en/" hreflang="en" lang="en">English</a>
+        -->
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <!-- FOTO HERO: mesa puesta junto a la ventana o en la sala, mantel claro, copas,
+           luz baja y cálida, sin personas reconocibles. Horizontal, mín. 2400 px de ancho.
+           Versión vertical recortada para móvil si es posible. -->
+      <img class="hero__img" src="assets/img/placeholder.svg"
+           alt="Mesa puesta en la sala de Martín Viejo, con luz cálida"
+           fetchpriority="high" decoding="async" width="1600" height="1000">
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <p class="eyebrow reveal">Restaurante · Huesca</p>
+        <h1 class="hero__title reveal" id="hero-title">Martín Viejo</h1>
+        <p class="hero__lead reveal">Cocina de producto. Mesa tranquila. Total&nbsp;discreción.</p>
+        <div class="hero__actions reveal">
+          <a class="btn btn--solid" href="#reservas">Solicitar reserva</a>
+          <a class="link-quiet" href="tel:+34974227492">o llame al 974 22 74 92</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LA CASA ============ -->
+    <section class="section casa" id="casa" aria-labelledby="casa-title">
+      <div class="wrap wrap--split">
+        <header class="section__head reveal">
+          <p class="eyebrow">La casa</p>
+          <h2 id="casa-title">Producto, calma y&nbsp;criterio</h2>
+        </header>
+        <div class="prose reveal">
+          <p>Martín Viejo es una casa de Huesca que cocina con producto y con calma. Trabajamos pocas cosas y las cuidamos: la materia prima manda, la técnica acompaña.</p>
+          <p>[CHEF] lidera una cocina que prefiere la precisión al ornamento. En sala, el servicio es atento y discreto: está cuando se le necesita y no estorba cuando no.</p>
+          <p>Aquí se viene a comer bien y a conversar sin prisa, sea una comida de trabajo o una mesa entre amigos. Cada reserva se atiende personalmente, y cada detalle se cuida antes de que usted llegue.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EL MENÚ ============ -->
+    <section class="section menu" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <header class="section__head section__head--center reveal">
+          <p class="eyebrow">El menú</p>
+          <h2 id="menu-title">Lo que marca la temporada</h2>
+          <p class="section__intro">La carta cambia con el mercado. Estos son algunos platos que definen la casa.</p>
+        </header>
+
+        <!-- VERIFICAR CON EL DUEÑO: platos de referencia y sus descripciones.
+             No añadir origen, maduración ni técnica sin confirmarlo. -->
+        <ol class="dishes">
+          <li class="dish reveal">
+            <h3 class="dish__name">Rodaballo</h3>
+            <p class="dish__desc">Carne blanca y firme, cocinada al punto exacto. Sin más acompañamiento que el que pide el pescado.</p>
+          </li>
+          <li class="dish reveal">
+            <h3 class="dish__name">Chuletón</h3>
+            <p class="dish__desc">Pieza de vacuno elegida con criterio y servida al punto que usted indique. [ORIGEN / MADURACIÓN]</p>
+          </li>
+          <li class="dish reveal">
+            <h3 class="dish__name">Ventresca</h3>
+            <p class="dish__desc">La parte más delicada del pescado, tratada con la sencillez que merece.</p>
+          </li>
+          <li class="dish reveal">
+            <h3 class="dish__name">Tomate</h3>
+            <p class="dish__desc">De temporada, aliñado en su justa medida. Un plato que solo funciona cuando el producto es bueno.</p>
+          </li>
+          <li class="dish reveal">
+            <h3 class="dish__name">Salmón</h3>
+            <p class="dish__desc">Textura untuosa y sabor limpio. [ELABORACIÓN]</p>
+          </li>
+        </ol>
+
+        <div class="menu-format reveal">
+          <div class="menu-format__item">
+            <h3>Menú [NOMBRE_MENÚ]</h3>
+            <p>[DESCRIPCIÓN_MENÚ: número de pases, si incluye bodega, días en que se sirve.]</p>
+          </div>
+          <div class="menu-format__item">
+            <h3>Carta</h3>
+            <p>Platos del día y del mercado. Le orientamos en sala según el tiempo del que disponga.</p>
+          </div>
+          <!-- Mostrar solo si el dueño lo aprueba; si no, borrar este párrafo. -->
+          <p class="menu-format__price">Desde [PRECIO] € por persona</p>
+        </div>
+
+        <p class="menu-note reveal">Adaptamos cualquier plato a alergias e intolerancias. Indíquelo al reservar.</p>
+      </div>
+    </section>
+
+    <!-- ============ DISCRECIÓN ============ -->
+    <section class="section discrecion" id="discrecion" aria-labelledby="disc-title">
+      <div class="wrap wrap--split">
+        <header class="section__head reveal">
+          <p class="eyebrow">Discreción y privacidad</p>
+          <h2 id="disc-title">Una mesa donde hablar con&nbsp;tranquilidad</h2>
+        </header>
+
+        <!-- VERIFICAR CON EL DUEÑO: dejar solo lo que el local ofrece realmente.
+             Si no hay sala privada, no añadirla. -->
+        <ul class="points">
+          <li class="point reveal">
+            <span class="point__num" aria-hidden="true">01</span>
+            <div>
+              <h3>Mesas con espacio</h3>
+              <p>Distancia entre mesas para conversar sin ser escuchado. Si lo pide al reservar, le asignamos la más apartada.</p>
+            </div>
+          </li>
+          <li class="point reveal">
+            <span class="point__num" aria-hidden="true">02</span>
+            <div>
+              <h3>Servicio sin interrupciones</h3>
+              <p>Nos adaptamos al ritmo de la reunión. Si lo prefiere, acordamos el servicio de antemano y en mesa solo se sirve.</p>
+            </div>
+          </li>
+          <li class="point reveal">
+            <span class="point__num" aria-hidden="true">03</span>
+            <div>
+              <h3>Confidencialidad</h3>
+              <p>Lo que se habla en la mesa se queda en la mesa. No compartimos quién nos visita.</p>
+            </div>
+          </li>
+          <li class="point reveal">
+            <span class="point__num" aria-hidden="true">04</span>
+            <div>
+              <h3>Factura de empresa</h3>
+              <p>Factura a nombre de la sociedad, con los datos que nos facilite, al final de la comida o por email.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ EMPRESA Y CELEBRACIONES ============ -->
+    <section class="section empresa" id="empresa" aria-labelledby="emp-title">
+      <div class="wrap">
+        <header class="section__head section__head--center reveal">
+          <p class="eyebrow">Comidas de empresa y celebraciones</p>
+          <h2 id="emp-title">Cada encuentro, a medida</h2>
+          <p class="section__intro">Hablamos con usted o con su asistente antes de la fecha para dejarlo todo resuelto: menú, horarios, alergias y facturación.</p>
+        </header>
+
+        <div class="formats">
+          <article class="format reveal">
+            <h3>Comida de negocios</h3>
+            <p>De dos a [N] comensales. Servicio ajustado a su agenda, con la cuenta preparada cuando la pida.</p>
+          </article>
+          <article class="format reveal">
+            <h3>Grupos de empresa</h3>
+            <p>Menú cerrado acordado de antemano, hasta [CAPACIDAD] personas. Un único interlocutor de principio a fin.</p>
+          </article>
+          <article class="format reveal">
+            <h3>Celebraciones</h3>
+            <p>Aniversarios, cierres de acuerdo o comidas familiares. Usted nos cuenta la ocasión; nosotros cuidamos el resto.</p>
+          </article>
+        </div>
+
+        <p class="center reveal"><a class="btn btn--line" href="#reservas">Consultar disponibilidad</a></p>
+      </div>
+    </section>
+
+    <!-- ============ GALERÍA ============ -->
+    <section class="section galeria" aria-labelledby="gal-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="gal-title">Galería</h2>
+        <div class="gallery">
+          <!-- FOTO 1 (vertical): detalle del rodaballo emplatado, luz lateral cálida, fondo oscuro. -->
+          <figure class="gallery__item gallery__item--tall reveal">
+            <img src="assets/img/placeholder.svg" alt="Rodaballo emplatado" loading="lazy" decoding="async" width="800" height="1100">
+          </figure>
+          <!-- FOTO 2 (horizontal): la sala vacía antes del servicio, mesas montadas, sin personas. -->
+          <figure class="gallery__item gallery__item--wide reveal">
+            <img src="assets/img/placeholder.svg" alt="La sala con las mesas montadas antes del servicio" loading="lazy" decoding="async" width="1400" height="900">
+          </figure>
+          <!-- FOTO 3 (vertical o cuadrada): chuletón en la brasa o en la tabla, primer plano, sin manos reconocibles. -->
+          <figure class="gallery__item reveal">
+            <img src="assets/img/placeholder.svg" alt="Chuletón recién cortado" loading="lazy" decoding="async" width="900" height="900">
+          </figure>
+          <!-- FOTO 4 (vertical o cuadrada): copa de vino y detalle de cubertería y mantel. -->
+          <figure class="gallery__item reveal">
+            <img src="assets/img/placeholder.svg" alt="Copa de vino y cubertería sobre el mantel" loading="lazy" decoding="async" width="900" height="900">
+          </figure>
+          <!-- FOTO 5 (horizontal): tomate de temporada aliñado, cenital, tonos cálidos. -->
+          <figure class="gallery__item gallery__item--wide reveal">
+            <img src="assets/img/placeholder.svg" alt="Tomate de temporada aliñado" loading="lazy" decoding="async" width="1400" height="900">
+          </figure>
+          <!-- FOTO 6 (vertical o cuadrada): rincón tranquilo / mesa apartada, o fachada al anochecer. -->
+          <figure class="gallery__item reveal">
+            <img src="assets/img/placeholder.svg" alt="Mesa apartada en un rincón de la sala" loading="lazy" decoding="async" width="800" height="1100">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESERVAS ============ -->
+    <section class="section reservas" id="reservas" aria-labelledby="res-title">
+      <div class="wrap wrap--narrow">
+        <header class="section__head section__head--center reveal">
+          <p class="eyebrow">Reservas</p>
+          <h2 id="res-title">Solicitar reserva</h2>
+          <p class="section__intro">Le confirmaremos personalmente. Si lo prefiere, llámenos al <a href="tel:+34974227492">974&nbsp;22&nbsp;74&nbsp;92</a>.</p>
+        </header>
+
+        <form class="form" id="reserva-form" novalidate>
+          <div class="field">
+            <label for="f-nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-empresa">Empresa <span class="opt">(opcional)</span></label>
+            <input id="f-empresa" name="empresa" type="text" autocomplete="organization">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-fecha">Fecha <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-fecha" name="fecha" type="date" required>
+            </div>
+            <div class="field">
+              <label for="f-hora">Hora <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-hora" name="hora" type="time" step="900" required>
+            </div>
+            <div class="field">
+              <label for="f-comensales">Comensales <span class="req" aria-hidden="true">*</span></label>
+              <!-- Añadir max="[CAPACIDAD]" cuando se confirme la capacidad máxima. -->
+              <input id="f-comensales" name="comensales" type="number" min="1" inputmode="numeric" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-ocasion">Ocasión</label>
+            <select id="f-ocasion" name="ocasion">
+              <option value="">Sin especificar</option>
+              <option>Comida de negocios</option>
+              <option>Comida de empresa</option>
+              <option>Celebración</option>
+              <option>Comida o cena privada</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-notas">Alergias y notas</label>
+            <textarea id="f-notas" name="notas" rows="3" maxlength="500" placeholder="Alergias, mesa apartada, factura de empresa…"></textarea>
+          </div>
+
+          <div class="field field--check">
+            <input id="f-rgpd" name="rgpd" type="checkbox" required>
+            <label for="f-rgpd">He leído y acepto la <a href="legal.html#privacidad">política de privacidad</a>. Los datos se usan solo para gestionar esta reserva. <span class="req" aria-hidden="true">*</span></label>
+          </div>
+
+          <p class="form__error" id="form-error" role="alert" hidden></p>
+
+          <div class="form__actions">
+            <button class="btn btn--solid" type="submit" value="whatsapp">Enviar por WhatsApp</button>
+            <button class="btn btn--line" type="submit" value="email">Enviar por email</button>
+          </div>
+          <p class="form__legal">Los campos con <span aria-hidden="true">*</span><span class="visually-hidden">asterisco</span> son obligatorios. La solicitud se abre en su WhatsApp o en su correo para que la envíe usted; no guardamos nada en esta web.</p>
+        </form>
+
+        <div class="form__done" id="form-done" role="status" tabindex="-1" hidden>
+          <p class="form__done-title">Su solicitud ha sido recibida.</p>
+          <p>Le confirmaremos personalmente.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UBICACIÓN ============ -->
+    <section class="section ubicacion" id="ubicacion" aria-labelledby="ubi-title">
+      <div class="wrap wrap--split">
+        <div>
+          <header class="section__head reveal">
+            <p class="eyebrow">Ubicación</p>
+            <h2 id="ubi-title">Cómo llegar</h2>
+          </header>
+          <dl class="info reveal">
+            <div>
+              <dt>Dirección</dt>
+              <dd><address>Calle los Pirineos, 15<br>22004 Huesca</address></dd>
+            </div>
+            <div>
+              <dt>Horario</dt>
+              <dd>[HORARIO]</dd>
+            </div>
+            <div>
+              <dt>Desde el centro</dt>
+              <dd>[INDICACIONES: p. ej. minutos a pie desde la plaza de Navarra / el Coso y ruta recomendada.]</dd>
+            </div>
+            <div>
+              <dt>Aparcamiento</dt>
+              <dd>[APARCAMIENTO: parking público más cercano, zona azul o servicio de aparcacoches si existe.]</dd>
+            </div>
+            <div>
+              <dt>Contacto</dt>
+              <dd>
+                <a href="tel:+34974227492">974 22 74 92</a><br>
+                <a href="mailto:[EMAIL]">[EMAIL]</a><br>
+                <a href="https://www.instagram.com/[USUARIO]/" rel="noopener" target="_blank">Instagram @[USUARIO]<span class="visually-hidden"> (se abre en una ventana nueva)</span></a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Mapa con carga bajo demanda: Google Maps no se carga (ni instala cookies)
+             hasta que el visitante lo pide. -->
+        <div class="map reveal" id="map">
+          <div class="map__placeholder">
+            <p>El mapa lo sirve Google y puede instalar cookies.</p>
+            <button class="btn btn--line" type="button" id="map-load">Ver mapa</button>
+            <a class="link-quiet" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+los+Pirineos+15+22004+Huesca" target="_blank" rel="noopener">Abrir en Google Maps<span class="visually-hidden"> (se abre en una ventana nueva)</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div>
+        <p class="footer__brand">Martín Viejo</p>
+        <p>Calle los Pirineos, 15 · 22004 Huesca</p>
+        <p><a href="tel:+34974227492">974 22 74 92</a> · <a href="mailto:[EMAIL]">[EMAIL]</a></p>
+      </div>
+      <nav aria-label="Información legal">
+        <ul class="footer__legal">
+          <li><a href="legal.html#aviso-legal">Aviso legal</a></li>
+          <li><a href="legal.html#privacidad">Privacidad</a></li>
+          <li><a href="legal.html#cookies">Cookies</a></li>
+        </ul>
+      </nav>
+      <p class="footer__copy">© <span id="year">2026</span> Martín Viejo</p>
+    </div>
+  </footer>
+
+  <!-- ============ CONTACTO FLOTANTE ============ -->
+  <div class="quick" aria-label="Contacto directo" role="group">
+    <a class="quick__btn" href="tel:+34974227492" aria-label="Llamar al restaurante">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    </a>
+    <a class="quick__btn" id="quick-wa" href="https://wa.me/34974227492" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp (se abre en una ventana nueva)">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.47-.72-1.7-.8-.23-.09-.4-.13-.56.12-.17.25-.64.8-.79.97-.14.16-.29.18-.54.06a6.7 6.7 0 0 1-3.3-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42l-.76-1.83c-.2-.48-.4-.41-.56-.42h-.48a.92.92 0 0 0-.66.31 2.8 2.8 0 0 0-.87 2.07 4.8 4.8 0 0 0 1 2.56 11 11 0 0 0 4.2 3.7c1.56.68 2.18.73 2.96.62.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+    </a>
+  </div>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

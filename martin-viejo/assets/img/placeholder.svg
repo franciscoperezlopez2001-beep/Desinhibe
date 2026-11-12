@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <!-- Marcador temporal. Sustituir por fotografía real (ver comentario en cada <img>). -->
+  <defs>
+    <radialGradient id="g" cx="38%" cy="42%" r="75%">
+      <stop offset="0" stop-color="#5a4330"/>
+      <stop offset=".45" stop-color="#2c2219"/>
+      <stop offset="1" stop-color="#120f0c"/>
+    </radialGradient>
+    <radialGradient id="h" cx="72%" cy="70%" r="40%">
+      <stop offset="0" stop-color="#8a6240" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#8a6240" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <rect width="1600" height="1000" fill="url(#h)"/>
+</svg>
