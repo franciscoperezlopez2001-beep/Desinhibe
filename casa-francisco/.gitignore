@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+.env*.local
+.env
+.data/
+next-env.d.ts
+*.tsbuildinfo
+assets-src/*MARCA-AGUA*

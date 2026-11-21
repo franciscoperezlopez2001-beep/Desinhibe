@@ -1,3 +1,5 @@
+> **Nuevo:** la web del restaurante *Casa Francisco* está en [`casa-francisco/`](casa-francisco/README.md) (Next.js).
+
 # APEX — Italian & German Icons
 
 Showroom 3D de **Ferrari** (rojo), **Lamborghini** (amarillo) y **Porsche** (azul): Three.js + GSAP/ScrollTrigger + Lenis, bilingüe ES/EN, accesible y responsive.
