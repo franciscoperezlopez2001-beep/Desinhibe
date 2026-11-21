@@ -49,9 +49,15 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
 
   return (
     <>
-      <ul className="grid grid-cols-2 gap-3 md:grid-cols-12 md:gap-4">
+      {/* Filas "justificadas": cada foto conserva su proporción real (sin recortes) y
+          todas las de una fila comparten altura. En móvil, una foto por fila. */}
+      <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:gap-4">
         {images.map((img, i) => (
-          <li key={img.src} className={img.className}>
+          <li
+            key={img.src}
+            className="sm:min-w-0"
+            style={{ flex: `${img.width / img.height} 1 0%`, aspectRatio: `${img.width} / ${img.height}` }}
+          >
             <button
               type="button"
               onClick={(e) => {
@@ -65,7 +71,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                 src={img.src}
                 alt={img.alt}
                 fill
-                sizes="(min-width: 768px) 40vw, 50vw"
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover transition-transform duration-[1.4s] ease-[var(--ease-lujo)] group-hover:scale-[1.04]"
               />
               <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-ebano/80 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
@@ -75,7 +81,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
               </span>
             </button>
           </li>
-        ))}
+        )).flatMap((li, i) => (i % 2 === 1 && i < images.length - 1 ? [li, <li key={`salto-${i}`} aria-hidden className="hidden h-0 basis-full sm:-mt-3 sm:block md:-mt-4" />] : [li]))}
       </ul>
 
       <dialog

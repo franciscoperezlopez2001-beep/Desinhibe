@@ -52,6 +52,8 @@ export interface Dish {
   /** Destacado en "Platos de la casa" */
   signature?: boolean;
   image?: string;
+  /** Tamaño real de la foto [ancho, alto] para no deformarla */
+  imageSize?: [number, number];
 }
 
 export interface MenuSection {
@@ -213,6 +215,7 @@ export const menu: MenuSection[] = [
         allergens: ["lacteos", "sulfitos", "apio"],
         signature: true,
         image: "/images/tournedo.jpg",
+        imageSize: [618, 495],
       },
       {
         id: "presa",
@@ -240,6 +243,7 @@ export const menu: MenuSection[] = [
         allergens: ["sulfitos"],
         signature: true,
         image: "/images/parrillada.jpg",
+        imageSize: [509, 392],
       },
       {
         id: "cordero",

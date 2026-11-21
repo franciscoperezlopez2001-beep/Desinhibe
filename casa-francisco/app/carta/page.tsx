@@ -16,22 +16,6 @@ export const metadata = pageMetadata({
   path: "/carta",
 });
 
-// Fotografías intercaladas entre secciones
-const interludes: Record<string, { src: string; alt: string; caption: string; ratio: string }> = {
-  mar: {
-    src: "/images/tournedo.jpg",
-    alt: "Tournedó de ternera con puré de patata y espárrago verde",
-    caption: "Tournedó de ternera",
-    ratio: "aspect-[618/495]",
-  },
-  postres: {
-    src: "/images/parrillada.jpg",
-    alt: "Parrillada Casa Francisco para compartir sobre tabla de madera",
-    caption: "Parrillada Casa Francisco",
-    ratio: "aspect-[509/392]",
-  },
-};
-
 export default function CartaPage() {
   return (
     <>
@@ -54,14 +38,6 @@ export default function CartaPage() {
       <div className="contenedor max-w-5xl py-16 md:py-24">
         {menu.map((section) => (
           <div key={section.id}>
-            {interludes[section.id] && (
-              <Reveal as="figure" className="my-8 md:my-16">
-                <div className={`relative ${interludes[section.id].ratio} max-h-[32rem] w-full overflow-hidden`}>
-                  <Image src={interludes[section.id].src} alt={interludes[section.id].alt} fill sizes="(min-width: 1024px) 64rem, 100vw" className="object-cover" />
-                </div>
-                <figcaption className="mt-3 font-serif text-lg italic text-arena">{interludes[section.id].caption}</figcaption>
-              </Reveal>
-            )}
             <section id={section.id} aria-labelledby={`${section.id}-t`} className="grid gap-6 py-12 md:grid-cols-[14rem_1fr] md:gap-12 md:py-16">
               <Reveal>
                 <p className="font-serif text-5xl italic text-laton/70">{section.kicker}</p>
@@ -69,6 +45,26 @@ export default function CartaPage() {
                   {section.title}
                 </h2>
                 {section.intro && <p className="mt-3 text-sm leading-relaxed text-arena">{section.intro}</p>}
+                {/* Fotos de los platos de esta sección, junto a su nombre y a tamaño real */}
+                {section.dishes.some((d) => d.image) && (
+                  <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-1 md:gap-6">
+                    {section.dishes
+                      .filter((d) => d.image)
+                      .map((d) => (
+                        <figure key={d.id}>
+                          <Image
+                            src={d.image!}
+                            alt={`${d.name}: ${d.description}`}
+                            width={d.imageSize?.[0] ?? 600}
+                            height={d.imageSize?.[1] ?? 450}
+                            sizes="(min-width: 768px) 14rem, 50vw"
+                            className="h-auto w-full"
+                          />
+                          <figcaption className="mt-2 font-serif text-base italic leading-snug text-arena">{d.name}</figcaption>
+                        </figure>
+                      ))}
+                  </div>
+                )}
               </Reveal>
               <div className="divide-y divide-marfil/10">
                 {section.dishes.map((dish, i) => (

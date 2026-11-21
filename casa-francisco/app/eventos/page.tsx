@@ -63,7 +63,7 @@ export default function EventosPage() {
               </ul>
             </Reveal>
           </div>
-          <Reveal className="relative aspect-[509/392] overflow-hidden">
+          <Reveal className="relative mx-auto aspect-[509/392] w-full max-w-[32rem] overflow-hidden lg:mx-0">
             <Image
               src="/images/parrillada.jpg"
               alt="Parrillada para compartir servida en la mesa de un grupo"

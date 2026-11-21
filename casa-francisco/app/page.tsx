@@ -54,7 +54,6 @@ const gallery: GalleryImage[] = [
     caption: "El Salón",
     width: 452,
     height: 678,
-    className: "row-span-2 md:col-span-4",
   },
   {
     src: "/images/bodega.jpg",
@@ -62,7 +61,6 @@ const gallery: GalleryImage[] = [
     caption: "La Bodega",
     width: 738,
     height: 414,
-    className: "col-span-1 md:col-span-8",
   },
   {
     src: "/images/parrillada.jpg",
@@ -70,7 +68,6 @@ const gallery: GalleryImage[] = [
     caption: "Parrillada Casa Francisco",
     width: 509,
     height: 392,
-    className: "col-span-1 md:col-span-4",
   },
   {
     src: "/images/tournedo.jpg",
@@ -78,7 +75,6 @@ const gallery: GalleryImage[] = [
     caption: "Tournedó de ternera",
     width: 618,
     height: 495,
-    className: "col-span-2 md:col-span-4",
   },
 ];
 
@@ -310,7 +306,7 @@ export default function HomePage() {
             <SectionHeading kicker="Galería" title={<span id="galeria-titulo">La casa por dentro</span>} />
           </div>
           <Reveal>
-            <div className="[&_ul]:auto-rows-[11rem] md:[&_ul]:auto-rows-[17rem]">
+            <div className="mx-auto max-w-5xl">
               <Gallery images={gallery} />
             </div>
           </Reveal>

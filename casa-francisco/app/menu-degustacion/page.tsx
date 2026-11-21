@@ -76,8 +76,16 @@ export default function TastingPage() {
               <ButtonLink href="/reservas" className="mt-8 w-full">Reservar</ButtonLink>
               <p className="mt-4 text-xs leading-relaxed text-arena">Indica en las observaciones de la reserva que deseáis el menú degustación y cualquier alergia.</p>
             </Reveal>
-            <Reveal delay={120} className="relative mt-6 aspect-[618/495] overflow-hidden">
-              <Image src="/images/tournedo.jpg" alt="Carne a la brasa con puré de patata y espárrago verde" fill sizes="22rem" className="object-cover" />
+            <Reveal as="figure" delay={120} className="mt-6">
+              <Image
+                src="/images/bodega.jpg"
+                alt="La Bodega de Casa Francisco: bóveda de ladrillo, lámpara de araña y mesas a la luz de las velas"
+                width={738}
+                height={414}
+                sizes="22rem"
+                className="h-auto w-full"
+              />
+              <figcaption className="mt-2 font-serif text-base italic text-arena">El menú también se puede disfrutar en La Bodega.</figcaption>
             </Reveal>
           </aside>
         </div>
